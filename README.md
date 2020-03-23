@@ -1,4 +1,5 @@
 ## React comment section
 
-This project is a comment section written in React and Firebase. Users can login with google account.
+Run "yarn" to install dependencies.</br>
+The project is written in React and Firebase. Users can login with google account.
 
