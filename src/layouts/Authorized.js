@@ -22,19 +22,19 @@ const Authorized = () => {
     });
   });
 
-  const handleFetchMore = () => {
-    console.log("Todo: pagination");
-  };
-
   return (
     <div>
       <AccountWidget />
       <CommentsContainer>
-        {(comments, handleAddComment) => (
+        {(comments, handleFetchMore, handleAddComment, handleDeleteComment) => (
           <Grid.Col className="offset-3 col-6">
             <Conversation>
               <AddCommentForm onSubmit={handleAddComment} />
-              <CommentsList comments={comments} onFetchMore={handleFetchMore} />
+              <CommentsList
+                comments={comments}
+                onFetchMore={handleFetchMore}
+                onDeleteComment={handleDeleteComment}
+              />
             </Conversation>
           </Grid.Col>
         )}

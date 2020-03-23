@@ -23,6 +23,10 @@ const CommentsContainer = ({ children }) => {
       });
   };
 
+  const handleFetchMore = () => {
+    console.log("Todo: pagination");
+  };
+
   const handleAddComment = body => {
     db.collection("comments")
       .doc()
@@ -33,7 +37,6 @@ const CommentsContainer = ({ children }) => {
         userName: user.displayName
       })
       .then(() => {
-        console.log("Added comment");
         getComments();
       })
       .catch(error => {
@@ -41,7 +44,28 @@ const CommentsContainer = ({ children }) => {
       });
   };
 
-  return <>{children(comments, handleAddComment)}</>;
+  const handleDeleteComment = id => {
+    db.collection("comments")
+      .doc(id)
+      .delete()
+      .then(() => {
+        getComments();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  return (
+    <>
+      {children(
+        comments,
+        handleFetchMore,
+        handleAddComment,
+        handleDeleteComment
+      )}
+    </>
+  );
 };
 
 export default CommentsContainer;

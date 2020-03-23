@@ -17,6 +17,17 @@
   float: right;
 }
 
+.Bin {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.Bin:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
 .CommentBody {
   margin-top: 5px;
 }

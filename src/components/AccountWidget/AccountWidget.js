@@ -5,9 +5,7 @@ import styles from "./AccountWidget.module.css";
 
 const AccountWidget = () => {
   return (
-    <Grid.Row
-      className={`mt-4 mr-4 mb-5 d-flex justify-content-end align-items-center`}
-    >
+    <Grid.Row className="mt-4 mr-4 mb-5 d-flex justify-content-end align-items-center">
       <img
         alt="profile_pic"
         className={styles.ProfileImage}

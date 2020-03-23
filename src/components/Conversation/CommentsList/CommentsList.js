@@ -12,7 +12,7 @@ const handleScroll = ({ currentTarget }, onFetchMore) => {
   }
 };
 
-const CommentsList = ({ comments, onFetchMore }) => {
+const CommentsList = ({ comments, onFetchMore, onDeleteComment }) => {
   if (comments.length === 0) {
     return <p className="text-center text-muted">{"No comments added yet"}</p>;
   }
@@ -27,7 +27,11 @@ const CommentsList = ({ comments, onFetchMore }) => {
       onScroll={event => handleScroll(event, onFetchMore)}
     >
       {comments.map(comment => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment
+          key={comment.id}
+          comment={comment}
+          onDelete={onDeleteComment}
+        />
       ))}
     </div>
   );

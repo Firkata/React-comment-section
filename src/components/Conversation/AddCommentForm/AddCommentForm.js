@@ -30,7 +30,7 @@ const AddCommentForm = ({ onSubmit }) => {
         disabled={body === ""}
         type="submit"
       >
-        Send
+        Add Comment
       </Button>
     </form>
   );
