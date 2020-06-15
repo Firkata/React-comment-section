@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { Button } from "tabler-react";
 import styles from "./AddCommentForm.module.css";
@@ -6,21 +6,24 @@ import styles from "./AddCommentForm.module.css";
 const AddCommentForm = ({ onSubmit }) => {
   const [body, setBody] = useState("");
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (body === "") {
-      return;
-    }
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (body === "") {
+        return;
+      }
 
-    onSubmit(body);
-    setBody("");
-  };
+      onSubmit(body);
+      setBody("");
+    },
+    [body, onSubmit]
+  );
 
   return (
-    <form onSubmit={event => handleSubmit(event)}>
+    <form onSubmit={(event) => handleSubmit(event)}>
       <textarea
         className={styles.Textarea}
-        onChange={event => setBody(event.target.value)}
+        onChange={(event) => setBody(event.target.value)}
         value={body}
         maxLength={100}
       />
@@ -37,7 +40,7 @@ const AddCommentForm = ({ onSubmit }) => {
 };
 
 AddCommentForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 };
 
-export default AddCommentForm;
+export default memo(AddCommentForm);

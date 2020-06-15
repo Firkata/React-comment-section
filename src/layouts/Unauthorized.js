@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import firebase from "firebase";
 import { StyledFirebaseAuth } from "react-firebaseui";
 
@@ -7,8 +7,8 @@ const Unauthorized = () => {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
-      signInSuccess: () => false
-    }
+      signInSuccess: () => false,
+    },
   };
 
   return (
@@ -20,4 +20,4 @@ const Unauthorized = () => {
   );
 };
 
-export default Unauthorized;
+export default memo(Unauthorized);

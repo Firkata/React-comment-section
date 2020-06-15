@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo, useMemo } from "react";
 import AccountWidget from "../components/AccountWidget";
 import { db } from "../firebaseDb";
 import firebase from "firebase";
 import { Grid } from "tabler-react";
-import Conversation from "../components/Conversation/Conversation";
-import AddCommentForm from "../components/Conversation/AddCommentForm";
-import CommentsList from "../components/Conversation/CommentsList";
+import {
+  Conversation,
+  AddCommentForm,
+  CommentsList,
+} from "../components/Conversation";
 import CommentsContainer from "../components/CommentsContainer";
 
 const Authorized = () => {
-  const user = firebase.auth().currentUser;
-  const userRef = db.collection("users").doc(user.uid);
+  const user = useMemo(() => firebase.auth().currentUser, []);
+  const userRef = useMemo(() => db.collection("users").doc(user.uid), [
+    user.uid,
+  ]);
 
   useEffect(() => {
-    userRef.get().then(docSnapshot => {
+    userRef.get().then((docSnapshot) => {
       if (!docSnapshot.exists) {
         userRef.set({
-          name: user.displayName
+          name: user.displayName,
         });
       }
     });
@@ -43,4 +47,4 @@ const Authorized = () => {
   );
 };
 
-export default Authorized;
+export default memo(Authorized);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import Comment from "../Comment";
 import styles from "./CommentsList.module.css";
@@ -24,9 +24,9 @@ const CommentsList = ({ comments, onFetchMore, onDeleteComment }) => {
   return (
     <div
       className={styles.Container}
-      onScroll={event => handleScroll(event, onFetchMore)}
+      onScroll={(event) => handleScroll(event, onFetchMore)}
     >
-      {comments.map(comment => (
+      {comments.map((comment) => (
         <Comment
           key={comment.id}
           comment={comment}
@@ -40,10 +40,10 @@ const CommentsList = ({ comments, onFetchMore, onDeleteComment }) => {
 CommentsList.propTypes = {
   comments: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired
+      id: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onFetchMore: PropTypes.func.isRequired
+  onFetchMore: PropTypes.func.isRequired,
 };
 
-export default CommentsList;
+export default memo(CommentsList);

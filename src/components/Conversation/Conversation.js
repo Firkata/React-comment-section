@@ -1,13 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Conversation.module.css';
+import React, { memo } from "react";
+import PropTypes from "prop-types";
+import styles from "./Conversation.module.css";
 
 const Conversation = ({ children }) => {
   return <div className={styles.Conversation}>{children}</div>;
 };
 
 Conversation.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
-export default Conversation;
+export default memo(Conversation);
